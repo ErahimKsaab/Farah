@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="56" height="56" viewBox="0 0 56 56">
+  <defs>
+    <filter id="Ellipse_86" x="0" y="0" width="56" height="56" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#fab300" flood-opacity="0.439"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="موعد_الحجز" data-name="موعد الحجز" transform="translate(-7 -140)">
+    <g transform="matrix(1, 0, 0, 1, 7, 140)" filter="url(#Ellipse_86)">
+      <circle id="Ellipse_86-2" data-name="Ellipse 86" cx="19" cy="19" r="19" transform="translate(9 9)" fill="#fff"/>
+    </g>
+    <g id="svgexport-6_19_" data-name="svgexport-6 (19)" transform="translate(25 158)">
+      <g id="Layer_2" data-name="Layer 2" transform="translate(0 0)">
+        <path id="Path_11917" data-name="Path 11917" d="M19.007,3.8H16.549V3.448a.7.7,0,1,0-1.4,0V3.8H7.794V3.448a.7.7,0,1,0-1.4,0V3.8H3.939A2.946,2.946,0,0,0,1,6.737V18.984a2.946,2.946,0,0,0,2.939,2.939H19.007a2.946,2.946,0,0,0,2.939-2.939V6.737A2.946,2.946,0,0,0,19.007,3.8ZM3.939,5.194H6.4v.349a.7.7,0,1,0,1.4,0V5.194h7.359v.349a.7.7,0,1,0,1.4,0V5.194h2.458A1.543,1.543,0,0,1,20.55,6.737V8.392H2.4V6.737A1.543,1.543,0,0,1,3.939,5.194ZM19.007,20.555H3.939A1.543,1.543,0,0,1,2.4,18.984v-9.2H20.55v9.2a1.543,1.543,0,0,1-1.543,1.571Z" transform="translate(-1 -2.75)" fill="#fab300"/>
+      </g>
+    </g>
+  </g>
+</svg>

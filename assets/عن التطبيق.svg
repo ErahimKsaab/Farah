@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31.789" height="31.85" viewBox="0 0 31.789 31.85">
+  <defs>
+    <clipPath id="clip-path">
+      <circle id="Ellipse_9" data-name="Ellipse 9" cx="15" cy="15" r="15" transform="translate(25 469)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="عن_التطبيق" data-name="عن التطبيق" transform="translate(-327 -512)">
+    <g id="Group_28" data-name="Group 28" transform="translate(303 44)">
+      <circle id="Ellipse_8" data-name="Ellipse 8" cx="15.425" cy="15.425" r="15.425" transform="translate(24.5 469)" fill="#fab300"/>
+      <path id="Path_96" data-name="Path 96" d="M78.407,56.82A15.426,15.426,0,0,1,56.82,78.407,15.426,15.426,0,1,0,78.407,56.82Z" transform="translate(-29.292 415.18)" fill="#fee9b5"/>
+      <path id="Path_102" data-name="Path 102" d="M30.463,9.529a15.839,15.839,0,0,0-3.6-5.141.469.469,0,0,0-.648.679A14.941,14.941,0,0,1,27.751,25a5.241,5.241,0,0,1-.651.788,14.933,14.933,0,0,1-22.412,0c-.325-.368-.429-.5-.651-.789A14.953,14.953,0,0,1,24.694,3.8a.469.469,0,1,0,.553-.759A15.775,15.775,0,0,0,15.894,0a16.3,16.3,0,0,0-5.786,1.081A15.5,15.5,0,0,0,4.655,4.655,15.894,15.894,0,0,0,27.133,27.133a15.91,15.91,0,0,0,3.329-17.6Z" transform="translate(24 468)"/>
+    </g>
+    <g id="svgexport-6_2_" data-name="svgexport-6 (2)" transform="translate(333.5 518.53)">
+      <g id="Group_17409" data-name="Group 17409" transform="translate(0 0)">
+        <g id="Group_17408" data-name="Group 17408" transform="translate(0 0)">
+          <path id="Path_11979" data-name="Path 11979" d="M16.038,2.751a9.4,9.4,0,1,0,0,13.287A9.4,9.4,0,0,0,16.038,2.751ZM10.62,13.48a1.225,1.225,0,1,1-2.451,0v-4.9a1.225,1.225,0,0,1,2.451,0Zm-1.247-7A1.093,1.093,0,0,1,8.211,5.366,1.092,1.092,0,0,1,9.387,4.234a1.127,1.127,0,1,1-.014,2.249Z" transform="translate(0 0)" fill="#7a7979"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

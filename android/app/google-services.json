@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "133564314627",
+    "project_id": "farah-d696c",
+    "storage_bucket": "farah-d696c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133564314627:android:750803b9c71008e3974a36",
+        "android_client_info": {
+          "package_name": "com.app.farah"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "133564314627-6j6af04eeo8cqssqqlompqjg1c6lr1j8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.farah",
+            "certificate_hash": "0ad1a63017235d38791b40dd957e7ab2cfe86e17"
+          }
+        },
+        {
+          "client_id": "133564314627-m360ebu0mv6lqj5u7vsv0bp860hau046.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD8Th4dVUhYJWuvrbzaNJWN5bGkWEiN08"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "133564314627-m360ebu0mv6lqj5u7vsv0bp860hau046.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
