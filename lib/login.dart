@@ -102,6 +102,7 @@ class _LoginpagemainState extends State<Loginpagemain> {
                   ],),
               ),);
         }else{
+        print(  response2.data[1]);
           print('doneeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
           _Loginphone(context,response2.data[0]['id'], response2.data[1].toString(),response2.data[0]);
 
@@ -120,6 +121,7 @@ class _LoginpagemainState extends State<Loginpagemain> {
   }
 
   _Loginphone(BuildContext context,id,kind,info)async{
+    print('kind is-------------------------->$kind');
 
     final auth=Provider.of<Authbase>(context,listen: false);
     try{

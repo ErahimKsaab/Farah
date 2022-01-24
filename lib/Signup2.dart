@@ -8,8 +8,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 class Signup2 extends StatefulWidget {
-  var City,kind,Curance,Country;
-  Signup2({this.City,this.Country,this.kind,this.Curance});
+  var City,kind,Curance,Country,BankAccount;
+  Signup2({this.City,this.Country,this.kind,this.Curance,this.BankAccount});
   @override
   _Signup2State createState() => _Signup2State();
 }
@@ -204,10 +204,9 @@ class _Signup2State extends State<Signup2> {
     }
   }
   _Loginphone(BuildContext context)async{
-
     final auth=Provider.of<Authbase>(context,listen: false);
     try{
-      await auth.signupbyphone( "$pricode"+PhonenumberController.text.toString(), context,["$pricode"+PhonenumberController.text.toString(),widget.kind,widget.Country,widget.Curance,widget.City,PasswordController.text.toString(),EmailController.text,NameController.text],'Signup');
+      await auth.signupbyphone( "$pricode"+PhonenumberController.text.toString(), context,["$pricode"+PhonenumberController.text.toString(),widget.kind,widget.Country,widget.Curance,widget.City,PasswordController.text.toString(),EmailController.text,NameController.text,widget.BankAccount.toString()],'Signup');
     }on PlatformException catch (e){
       print("gggggggggggggggggggggggg");
       print(e);

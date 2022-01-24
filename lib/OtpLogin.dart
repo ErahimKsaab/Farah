@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:farah/Classes.dart';
 import 'package:farah/ComonClass.dart';
 import 'package:farah/MainPage.dart';
+import 'package:farah/Ra2eseya.dart';
 import 'package:farah/Signup3.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -32,6 +33,7 @@ var token;
   final TextEditingController codecontroller = TextEditingController();
   usedd USE=usedd();
   Future Signuprequester() async {
+    print('lind of sign up--------------------->Signuprequester');
     loadingDialog();
     try {
       print('1');
@@ -44,6 +46,7 @@ var token;
         'phonenum':widget.list[0].toString(),
         'email': widget.list[6].toString(),
         'password':widget.list[5].toString(),
+        'bank_account':widget.list[8].toString(),
         'token':token.toString(),
         'block':'false'
       };
@@ -60,8 +63,8 @@ var token;
         print(response2.data );
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setInt('userids',response2.data['id']);
-        prefs.setString('kindofusers', 'user') ;
-
+        prefs.setString('kindofusers', widget.list[1]) ;
+        print('kind is ->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${widget.list[1]}');
         var PROGILEINFO = Provider.of<pro>(context,listen: false);
         PROGILEINFO.Profile(response2.data);
         //  print(prefs.getInt('userid'));
@@ -89,6 +92,7 @@ var token;
     }
   }
   Future signupServiceProvider() async {
+    print('lind of sign up--------------------->signupServiceProvider');
     loadingDialog();
     try {
       print('1');
@@ -102,6 +106,7 @@ var token;
         'email': widget.list[6].toString(),
         'password':widget.list[5].toString(),
         'token':token.toString(),
+        'bank_account':widget.list[8].toString(),
         'block':'false'
       };
 
@@ -117,13 +122,13 @@ var token;
 print(response2.data );
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setInt('userids',response2.data['id']);
-        prefs.setString('kindofusers', 'mocadem') ;
-
+        prefs.setString('kindofusers', widget.list[1]) ;
+print('kind is ->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${widget.list[1]}');
         var PROGILEINFO = Provider.of<pro>(context,listen: false);
         PROGILEINFO.Profile(response2.data);
         //  print(prefs.getInt('userid'));
         Navigator.push(context,  PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) =>MainPage(),transitionDuration: Duration(seconds: 1,),
+          pageBuilder: (context, animation, secondaryAnimation) =>Ra2esi(),transitionDuration: Duration(seconds: 1,),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             const begin = Offset(1.0, 0.0);
             const end = Offset.zero;
@@ -331,23 +336,6 @@ print(response2.data );
                                     signupServiceProvider();
                                   }
 
-//                                                        Navigator.push(context,  PageRouteBuilder(
-//                  pageBuilder: (context, animation, secondaryAnimation) =>Signup3(phone:widget.list[0] ,kind: widget.list[1] , country: widget.list[2] ,accurance: widget.list[3],City:  widget.list[4],password:widget.list[5] ,email: widget.list[6] ,),transitionDuration: Duration(seconds: 1,),
-//                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
-//                    const begin = Offset(1.0, 0.0);
-//                    const end = Offset.zero;
-//                    const curve = Curves.ease;
-//                    var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-//
-//                    return SlideTransition(
-//                      position: animation.drive(tween),
-//                      child: child,
-//                    );
-//                  },
-//                ));
-//                                  //     PROGILEINFO.Profile(widget.list[1]);
-//                                  //        SharedPreferences prefs = await SharedPreferences.getInstance();
-//                                  ///    prefs.setInt('userid',widget.list[1]['id']);
 
                                   print('doneeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeessssssssssssssssssss');
                                 }
@@ -367,35 +355,54 @@ print(response2.data );
                                     Navigator.pop(context);
                                   }, child: Text('Close',style: TextStyle(color: Colors.white),))],),);
                                 });
-                                // var PROGILEINFO = Provider.of<pro>(context,listen: false);
-                                print('5555555555555555555555555555555');
+
                                 final user = result?.user;
                                 if(user!=null) {
-                                print('dooooneeeeeecoooddeee');
-print(widget.list[0]);
+                                print('KIND OF USER ID------->${widget.list[2]}');
+                                      print(widget.list[0]);
                                 print(widget.list[1]);
                                 print(widget.list[2]);
                                     SharedPreferences prefs = await SharedPreferences.getInstance();
                                      prefs.setInt('userids',widget.list[1]);
                                 prefs.setString('kindofusers', widget.list[2]) ;
-
+                                var cc=await prefs.getString('kindofusers');
+                                print('KIND OF USER ID------->${cc}');
                                 var PROGILEINFO = Provider.of<pro>(context,listen: false);
                                 PROGILEINFO.Profile(widget.list[3]);
-                                Navigator.push(context,  PageRouteBuilder(
-                                  pageBuilder: (context, animation, secondaryAnimation) =>MainPage(),transitionDuration: Duration(seconds: 1,),
-                                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                                    const begin = Offset(1.0, 0.0);
-                                    const end = Offset.zero;
-                                    const curve = Curves.ease;
+                                if(widget.list[2]=='provider'){
+                                  Navigator.push(context,  PageRouteBuilder(
+                                    pageBuilder: (context, animation, secondaryAnimation) =>Ra2esi(),transitionDuration: Duration(seconds: 1,),
+                                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                      const begin = Offset(1.0, 0.0);
+                                      const end = Offset.zero;
+                                      const curve = Curves.ease;
 
-                                    var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                                      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
-                                    return SlideTransition(
-                                      position: animation.drive(tween),
-                                      child: child,
-                                    );
-                                  },
-                                ));
+                                      return SlideTransition(
+                                        position: animation.drive(tween),
+                                        child: child,
+                                      );
+                                    },
+                                  ));
+                                }else{
+                                  Navigator.push(context,  PageRouteBuilder(
+                                    pageBuilder: (context, animation, secondaryAnimation) =>MainPage(),transitionDuration: Duration(seconds: 1,),
+                                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                      const begin = Offset(1.0, 0.0);
+                                      const end = Offset.zero;
+                                      const curve = Curves.ease;
+
+                                      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+                                      return SlideTransition(
+                                        position: animation.drive(tween),
+                                        child: child,
+                                      );
+                                    },
+                                  ));
+                                }
+
                                 }
 
 

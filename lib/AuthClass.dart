@@ -73,7 +73,7 @@ class Auth implements Authbase {
       },
 
       codeSent: (String verificationId, [int forceResendingToken]){
-        //   Navigator.pop(context);
+         Navigator.pop(context);
         print("LoginByPhoneSeccUSED");
 
         Navigator.push(context, MaterialPageRoute(builder: (context) =>otpsignup(verificationId: verificationId,kind:Kind ,list: list,) ,));

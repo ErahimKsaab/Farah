@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:farah/ChooseLogin.dart';
 import 'package:farah/ComonClass.dart';
-import 'package:farah/SignUp.dart';
+import 'package:farah/login.dart';
 import 'package:farah/Signup1.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -74,7 +74,6 @@ class _LoginpageState extends State<Loginpage> {
               )),color:Color(0xFFffb800))),
               SizedBox(height:  heigh*0.0132275*6,),
               InkWell(onTap: ()=>
-
                   Navigator.push(context,  PageRouteBuilder(
                     pageBuilder: (context, animation, secondaryAnimation) =>chooseloginway(),transitionDuration: Duration(seconds: 1,),
                     transitionsBuilder: (context, animation, secondaryAnimation, child) {

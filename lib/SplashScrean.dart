@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:farah/Classes.dart';
 import 'package:farah/MainPage.dart';
+import 'package:farah/Ra2eseya.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'dart:async';
@@ -34,21 +35,44 @@ class _SplashScreenState extends State<SplashScreen> {
         });
         var PROGILEINFO = Provider.of<pro>(context,listen: false);
         PROGILEINFO.section(sections);
-        Navigator.push(context,  PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) =>MainPage(),transitionDuration: Duration(seconds: 1,),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            const begin = Offset(1.0, 0.0);
-            const end = Offset.zero;
-            const curve = Curves.ease;
+        SharedPreferences pref = await SharedPreferences.getInstance();
 
-            var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        var ss=pref.get('kindofusers');
+        if(ss=='provider'){
+          print('kind is --------------------------------->provider');
+          Navigator.push(context,  PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) =>Ra2esi(),transitionDuration: Duration(seconds: 1,),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              const begin = Offset(1.0, 0.0);
+              const end = Offset.zero;
+              const curve = Curves.ease;
 
-            return SlideTransition(
-              position: animation.drive(tween),
-              child: child,
-            );
-          },
-        ));
+              var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+              return SlideTransition(
+                position: animation.drive(tween),
+                child: child,
+              );
+            },
+          ));
+        }else{
+          Navigator.push(context,  PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) =>MainPage(),transitionDuration: Duration(seconds: 1,),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              const begin = Offset(1.0, 0.0);
+              const end = Offset.zero;
+              const curve = Curves.ease;
+
+              var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+              return SlideTransition(
+                position: animation.drive(tween),
+                child: child,
+              );
+            },
+          ));
+        }
+
       } else {
         print(response.statusCode);
         await Future.delayed(Duration(seconds:  1));
@@ -155,9 +179,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
     var ss=pref.get('kindofusers');
     var id=pref.get('userids');
-    if(ss=='user'){
+    print('KIND OF USER ID-------=========================>$ss');
+    if(ss=='requester'){
       await   getuserinformation(id);
-    }else if(ss=='mocadem'){
+    }else if(ss=='provider'){
       await getmokademinformation(id);
     }else{
       Timer(Duration(seconds: 3),()=>Navigator.push(context,  PageRouteBuilder(

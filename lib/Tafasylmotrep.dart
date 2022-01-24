@@ -1,4 +1,5 @@
 import 'package:farah/hagzzz.dart';
+import 'package:farah/oldsProvider.dart';
 import 'package:flutter/material.dart';
 class tafasilmotrep extends StatefulWidget {
   var content;
@@ -26,7 +27,9 @@ class _tafasilmotrepState extends State<tafasilmotrep> {
                   Text('اسم مقدم الخدمه',style: TextStyle(color: Colors.black,fontSize:  heigh*0.0132275*1.5,fontWeight: FontWeight.bold,fontFamily: 'Cairo',)),
                   SizedBox(height: heigh*0.01322,),  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(widget.content['name'],style: TextStyle(color: Colors.black,fontSize:  heigh*0.0132275*1.5,fontWeight: FontWeight.bold,fontFamily: 'Cairo',)),
+                      InkWell(onTap: (){
+                       // Navigator.push(context,MaterialPageRoute(builder: (context) => Olds(name: widget.content['name'],),));
+                      },child: Text(widget.content['name'],style: TextStyle(color: Colors.black,fontSize:  heigh*0.0132275*1.5,fontWeight: FontWeight.bold,fontFamily: 'Cairo',))),
                       Row(mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           if(int.parse(widget.content['rate'])==5)    Row(
@@ -136,7 +139,7 @@ class _tafasilmotrepState extends State<tafasilmotrep> {
                                 SizedBox(height: heigh*0.01322,),
                                 RaisedButton(onPressed:(){
                                   Navigator.push(context,  PageRouteBuilder(
-                                    pageBuilder: (context, animation, secondaryAnimation) =>HAGZ(bookingid: widget.content['booking'][index]['id'],conternt : widget.content,),transitionDuration: Duration(seconds: 1,),
+                                    pageBuilder: (context, animation, secondaryAnimation) =>HAGZ(bookingid: widget.content['booking'][index],conternt : widget.content,),transitionDuration: Duration(seconds: 1,),
                                     transitionsBuilder: (context, animation, secondaryAnimation, child) {
                                       const begin = Offset(1.0, 0.0);
                                       const end = Offset.zero;

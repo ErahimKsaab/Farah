@@ -58,10 +58,12 @@ class _ContactUsState extends State<ContactUs> {
     loadingDialog();
     try {
       FormData formData = new FormData.fromMap({
+       "sender_id": profile.information['id'],
         "name": name.text.toString(),
         "email": email.text.toString(),
         'phone': "$pricode"+phone.text.toString(),
         'report':report.text.toString(),
+        'kind':"service_requester"
 
       });
       Response response2 = await Dio().post(

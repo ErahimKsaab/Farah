@@ -33,6 +33,8 @@ dependencies:
   google_maps_flutter:
   google_maps_place_picker:
   animated_text_kit:
+  image_picker:
+  webview_flutter:
   font_awesome_flutter:
   fluttertoast:
   flutter_animated_button:
@@ -55,6 +57,7 @@ dependencies:
   dio:
   geolocator:
   simple_moment:
+  cached_network_image:
   http:
   firebase_core: 0.7.0
   firebase_auth: any

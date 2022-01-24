@@ -73,12 +73,12 @@ class _HAGZState extends State<HAGZ> {
     loadingDialog();
     try {
       FormData formData = new FormData.fromMap({
-        "booking_id": widget.bookingid.toString(),
-        "content_id": widget.conternt['id'],
-        'history':"${history.toLocal()}".split(' ')[0],
+        "booking_id": widget.bookingid['id'].toString(),
+        "content_id": widget.conternt['id'].toString(),
+        'history':history.toString(),
         'time':time.format(context).toString(),
         'Booking_kind':kindOfHagzController.text.toString(),
-        'max_budget':maxPriceController.text.toString(),
+        'max_budget':widget.bookingid['price'].toString(),
         "Booking_description":HagzDetalesController.text.toString(),
         "servesreqyesters_id":profile.information['id'].toString(),
         "servesprovider_id":widget.conternt['servesprovider_id'].toString(),
@@ -86,7 +86,7 @@ class _HAGZState extends State<HAGZ> {
         "lat":lat,
         "long":long,
         'section_id':widget.conternt['section_id'].toString(),
-        'State':'orderd',
+        'State':'new',
         'urgent':"0",
       });
       Response response2 = await Dio().post(
@@ -139,7 +139,7 @@ print(response2.data);
   }
   DateTime selectedDate = DateTime.now();
   var lat,long;
-  DateTime history ;
+  var history ;
 
   var AdressController=TextEditingController();
   var kindOfHagzController=TextEditingController();
@@ -157,11 +157,19 @@ print(response2.data);
       });
     print("${history.toLocal()}".split(' ')[0]);
   }
+  var ind=0;
+
+  List times=[
+    {'yoom':"السبت","time1":'11:20 ص   الي   11:30 م ',"time2":"11:20 ص   الي   11:30 م ",'acc':'yes'},
+    {'yoom':"الاحد","time1":'11:20 ص   الي   11:30 م ',"time2":"11:20 ص   الي   11:30 م ",'acc':'yes'},
+   ];
   Widget build(BuildContext context) {
     final h=MediaQuery.of(context).size.height;
     final w=MediaQuery.of(context).size.width;
     final width=MediaQuery.of(context).size.width;
     final height=MediaQuery.of(context).size.height;
+    final weidth=MediaQuery.of(context).size.width;
+    final heigh=MediaQuery.of(context).size.height;
     return Directionality(textDirection:TextDirection.rtl ,
       child: Scaffold(
         body: SingleChildScrollView(
@@ -214,17 +222,47 @@ print(response2.data);
                       SizedBox(height: h*0.01322*2,),
                       Text('دع الفنان يعرف متي يكون الحدث الخاص بك', style: TextStyle(color: Colors.black45,fontSize:  h*0.0132275*1.5,fontWeight: FontWeight.bold,fontFamily: 'Cairo',)),
                       SizedBox(height: h*0.01322*1.2,),
-                      InkWell( onTap:( )=>_selectDate(context),
-                        child: Row(children: [
-                          SizedBox(width: h*0.01322*1.6,),
-                          Icon(Icons.calendar_today,color:Color(0xFFffb800),size: h*0.01322*2.6,),
-                          SizedBox(width: h*0.01322*1.6,),
-                          Text(history!=null?"${history.toLocal()}".split(' ')[0]:"ضبط الان", style: TextStyle(color: Colors.black45,fontSize:  h*0.0132275*1.9,fontWeight: FontWeight.normal,fontFamily: 'Cairo',)),
+                      Container(height:heigh*0.01322*20 ,color: Colors.white,child: ListView.builder(itemCount: 2,itemBuilder: (context, index) =>Padding(
+                        padding:   EdgeInsets.symmetric(horizontal: heigh*0.01322,vertical: heigh*0.022486),
+                        child: InkWell(onTap:(){
+                          print('asd');
+                          times.forEach((element) {
+                            print(element['acc']);
+                            setState(() {
+                              element['acc']="yes";
+                            });
+                          });
+                          setState(() {
+                            times[index]['acc']= "no";
+                          });
+history= times[index]['time2'];
+                          print( times[index]['acc'].toString());
+                        } ,
+                          child: Container(decoration: BoxDecoration(color:times[index]['acc']!= "yes"?Colors.orange:Colors.transparent,borderRadius: BorderRadius.circular(20)),
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(crossAxisAlignment: CrossAxisAlignment.center,mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(Icons.timer,color: Color(0xFFffb800),),
+                                        SizedBox(width: heigh*0.01322/2,),
+                                        Text(times[index]['yoom'].toString(),  style: TextStyle(color: Colors.black,fontSize:  heigh*0.0132275*1.5,fontWeight: FontWeight.bold,fontFamily: 'Cairo',)),
 
-                        ],),
-                      )
+                                      ],
+                                    ),
+                                    Text(times[index]['time1'].toString(), style: TextStyle(color: Colors.black,fontSize:  heigh*0.0132275*1.5,fontWeight: FontWeight.normal,fontFamily: 'Cairo',)),
 
-                    ],
+                                    Text(''),
+                            ]),
+                              ),
+                          ),
+                      ),
+                        ),),),
+
+
+                      )],
                   ),
                 ),),
                 if(index==1)Container(width: w,height: h*0.0132275* 35,color: Colors.white,child: Padding(
@@ -290,7 +328,7 @@ print(response2.data);
                                             ],
                                           )),),
                                           SizedBox(   width:width*0.60,
-                                            child: FlatButton(color: Colors.orange,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                                            child: FlatButton(color: Color(0xFFffb800),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                                               child: Text('اختر هذا المكان'),
                                               onPressed: () {
                                                 print(selectedPlace.geometry.location);
@@ -406,10 +444,11 @@ Padding(
                   child: SingleChildScrollView( physics: BouncingScrollPhysics(),
                     child: Column(  mainAxisSize:MainAxisSize.max,mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('اقصي ميزانيه يمكنك دفعها', style: TextStyle(color: Colors.black,fontSize:  h*0.0132275*1.8,fontWeight: FontWeight.bold,fontFamily: 'Cairo',)),
+                        Text(' ميزانيه الحجز', style: TextStyle(color: Colors.black,fontSize:  h*0.0132275*1.8,fontWeight: FontWeight.bold,fontFamily: 'Cairo',)),
                         SizedBox(height: h*0.01322*5,),
-Row(children: [
-  Expanded(child: TextFormField(controller: maxPriceController,decoration: InputDecoration(hintText:'السعر بالريال ' ,border: InputBorder.none),keyboardType: TextInputType.number,))
+Row(crossAxisAlignment: CrossAxisAlignment.center,mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
+  Text(widget.bookingid['price'], style: TextStyle(color:Color(0xFFffb800),fontSize:  h*0.0132275*1.8,fontWeight: FontWeight.bold,fontFamily: 'Cairo',))
+
 ,Text(    '   ريال', style: TextStyle(color:Color(0xFFffb800),fontSize:  h*0.0132275*1.8,fontWeight: FontWeight.bold,fontFamily: 'Cairo',))
 ],)
                       ],
@@ -472,14 +511,8 @@ if(index==0&&history!=null){
     backgroundColor:Colors.black,
     textColor: Colors.white,
   );
-}else if(index==5&&maxPriceController.text.length!=0){
-  OrderHagz();
 }else if(index==5&&maxPriceController.text.length==0){
-  Fluttertoast.showToast(gravity: ToastGravity.CENTER,
-    msg: 'ادخل اقصي ميزانيه للحجز اولا',
-    backgroundColor:Colors.black,
-    textColor: Colors.white,
-  );
+  OrderHagz();
 }
                   //                  if(index==5){
 //                  print('object');

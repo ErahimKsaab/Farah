@@ -1,5 +1,5 @@
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:farah/SignUp.dart';
+import 'package:farah/login.dart';
 import 'package:farah/Signup2.dart';
 import 'package:flutter/material.dart';
 class Signup1 extends StatefulWidget {
@@ -16,6 +16,7 @@ class _Signup1State extends State<Signup1> {
 var Country='العربية السعودية';
   var check=false;
  TextEditingController currencycontroller=TextEditingController();
+  TextEditingController BankAccountcontroller=TextEditingController();
   TextEditingController Citycontroller=TextEditingController();
   Widget build(BuildContext context) {
     final weidth=MediaQuery.of(context).size.width;
@@ -68,14 +69,22 @@ var Country='العربية السعودية';
                         Expanded(child: TextFormField ( controller: currencycontroller,decoration: InputDecoration(border: InputBorder.none,hintText: '',hintStyle: TextStyle(fontSize: heigh*0.01984126,fontWeight: FontWeight.normal,fontFamily: 'Cairo',)),)),
                       ],
                     ),
-
+                    Text('رقم الحساب البنكي',style:  TextStyle(fontSize: heigh*0.01984,fontWeight: FontWeight.normal,fontFamily: 'Cairo',),),
+                    SizedBox(height: heigh*0.0132275,),
+                    Row(
+                      children: [
+                        Icon(Icons.navigate_next,color: Color(0xFFffb800),size: heigh*0.0132275*4,),
+                        Expanded(child: TextFormField ( controller: BankAccountcontroller,decoration: InputDecoration(border: InputBorder.none,hintText: '',hintStyle: TextStyle(fontSize: heigh*0.01984126,fontWeight: FontWeight.normal,fontFamily: 'Cairo',)),)),
+                      ],
+                    ),
                   ],),
                 ),
 
 
                 SizedBox(height: heigh*0.0132275*9,),
                 SizedBox(width: heigh*0.0132275*33,height: heigh*0.0132275*6,child: RaisedButton(child: Center(child: Text('التالي' ,style: TextStyle(fontFamily: 'Cairo',fontSize: 22,color: Colors.white ),), ),shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(10),),onPressed: ()
-                  {  if(Citycontroller.text.length==0){
+                  {
+                    if(Citycontroller.text.length==0){
                     showDialog(context: context, builder: (context) =>
                         Directionality(textDirection:TextDirection.rtl ,
                           child: AlertDialog(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),title: Row(

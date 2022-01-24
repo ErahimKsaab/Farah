@@ -2,6 +2,7 @@ import 'package:farah/Classes.dart';
 import 'package:farah/Loginpage.dart';
 import 'package:farah/Ra2eseya.dart';
 import 'package:farah/Updateuserprofile.dart';
+import 'package:farah/baka/Orders.dart';
 import 'package:farah/hogozaty.dart';
 import 'package:flutter/material.dart';
 import 'package:farah/notification.dart';
@@ -99,9 +100,16 @@ as()async{
 
                 }),
                 buildListTile(context, Icons.person,
-                    'حجوزاتي',"assets/حجوزاتي.svg", () {
+                    ss!='mocadem'?  'الحجوزات المطلوبه':"خدماتي","assets/حجوزاتي.svg", () {
+print(ss);
 Navigator.pop(context);
-Navigator.push(context, MaterialPageRoute(builder: (context) => hogozat(),));
+if( ss!='mocadem'){
+  Navigator.push(context, MaterialPageRoute(builder: (context) => orders(),));
+}else{
+  Navigator.push(context, MaterialPageRoute(builder: (context) => hogozat(),));
+
+}
+
                     }),
                 buildListTile(context, Icons.drive_eta,
                     'الاشعارات', 'assets/عن التطبيق.svg',() {

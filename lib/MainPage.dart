@@ -1,9 +1,10 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:farah/Classes.dart';
 import 'package:farah/Drawer.dart';
-import 'package:farah/SignUp.dart';
+import 'package:farah/login.dart';
 import 'package:farah/Resultoftasnif.dart';
 import 'package:farah/Signup1.dart';
 import 'package:farah/Tasnifat.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:farah/KHIDMAAGELA.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 class MainPage extends StatefulWidget {
   @override
   _MainPageState createState() => _MainPageState();
@@ -81,7 +83,7 @@ class _MainPageState extends State<MainPage> {
                   Text('اختر القسم المناسب',style: TextStyle(fontSize:  heigh*0.0132275*2,fontWeight: FontWeight.bold,fontFamily: 'Cairo',),),      SizedBox(height: heigh*0.0132275*2,),
                    GridView.builder(physics:  BouncingScrollPhysics(),
                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:3),
-                     itemCount: 9,
+                     itemCount: con.Sections.length,
                      shrinkWrap: true,
                      itemBuilder: (BuildContext context, index) {
                        return InkWell(
@@ -122,11 +124,11 @@ print(id);
                              mainAxisAlignment: MainAxisAlignment.center,
                              children: <Widget>[
                                SizedBox(height: heigh*0.01058),
-                               SvgPicture.network( con.Sections[index]['image'],height: heigh*0.06613,width: heigh*0.06613,placeholderBuilder: (context) =>   SpinKitRing(
-                                 color:  Color(0xFFffb800),
-                                 lineWidth: 1.5,
-                                 size: 35.0,
-                               ),),
+                               CachedNetworkImage(height: 50,width: 50,
+                                 imageUrl:  con.Sections[index]['image'],fit: BoxFit.fill,
+                                 placeholder: (context, url) => CircularProgressIndicator(backgroundColor: Color(0xFFffb800),),
+                                 errorWidget: (context, url, error) => Icon(Icons.error),
+                               ),
 
                                Text(
                                    con.Sections[index]['name'],textAlign: TextAlign.center,

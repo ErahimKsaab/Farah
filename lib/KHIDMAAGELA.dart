@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:farah/Classes.dart';
+import 'package:farah/ListOfKhademat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
@@ -83,7 +84,7 @@ class _AgelState extends State<Agel> {
         "servesreqyesters_id": con.information['id'],
         'time':time.format(context).toString().toString(),
         'history':"${history.toLocal()}".split(' ')[0],
-        'Booking_kind':KindOforder.text.toString(),
+        'Booking_kind':kind.toString(),
         'max_budget':MaxMoney.text.toString(),
         'urgent':"1",
       });
@@ -113,7 +114,9 @@ class _AgelState extends State<Agel> {
   @override
   var KindOforder=TextEditingController();
   var MaxMoney=TextEditingController();
+  var kind;
   Widget build(BuildContext context) {
+    final con = Provider.of<pro>(context, listen: true);
     final weidth=MediaQuery.of(context).size.width;
     final heigh=MediaQuery.of(context).size.height;
     return Directionality(textDirection:TextDirection.rtl ,
@@ -138,13 +141,22 @@ class _AgelState extends State<Agel> {
                        SizedBox(height: heigh*0.01322*3.5,),
                        Text('نوع الخدمه', style: TextStyle(color: Colors.black45,fontSize:  heigh*0.0132275*1.8,fontWeight: FontWeight.bold,fontFamily: 'Cairo',)),
                       SizedBox(height: heigh*0.01322,),
-                      Container(width: weidth,height: heigh*0.01322*6,child: Row(
-                        children: [
-                          Icon(Icons.navigate_next,color: Colors.amber,size: 45,),
-                          Expanded(child: TextFormField ( controller: KindOforder,decoration: InputDecoration(border: InputBorder.none,hintText: 'عيد ميلاد',hintStyle: TextStyle(fontSize: heigh*0.01984126*1.3,fontWeight: FontWeight.normal,fontFamily: 'Cairo',)),)),
-
-                        ],
-                      ),),
+                      InkWell(onTap:(){
+                          Navigator.push(context,MaterialPageRoute(builder: (context) =>ListOfTasnifat())).then((value){
+                            if (value!=null){
+                              setState(() {
+                                kind=value[0];
+                              });
+                            }
+                          });
+                      } ,
+                        child: Container(width: weidth,height: heigh*0.01322*6,child: Row(
+                          children: [
+                            Icon(Icons.navigate_next,color: Colors.amber,size: 45,),
+Text(kind??'غير مضبوطه', style: TextStyle(color: Colors.black45,fontSize:  heigh*0.0132275*1.8,fontWeight: FontWeight.bold,fontFamily: 'Cairo',))
+                          ],
+                        ),),
+                      ),
                       SizedBox(height: heigh*0.03703,),
                       Text('التاريخ', style: TextStyle(color: Colors.black45,fontSize:  heigh*0.0132275*1.8,fontWeight: FontWeight.bold,fontFamily: 'Cairo',)),
                       SizedBox(height: heigh*0.01322,), Container(width: weidth,height: heigh*0.01322*6,child: Row(
@@ -189,7 +201,8 @@ class _AgelState extends State<Agel> {
               SizedBox(height: heigh*0.03703,),
               SizedBox(width: heigh*0.4100,height: heigh*0.01322*5,child: 
               RaisedButton(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),onPressed: (){
-                if(KindOforder.text.length==0){
+                print('asd');
+                if(kind==null){
                   Directionality(textDirection:TextDirection.rtl ,
                     child: AlertDialog(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),title: Row(
                       children: [
@@ -279,6 +292,7 @@ class _AgelState extends State<Agel> {
                       ],),
                   );
                 }else{
+                  print('asd');
                   AddOrder();
                 }
                 
